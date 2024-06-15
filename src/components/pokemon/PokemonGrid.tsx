@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import PokemonCard from "./PokemonCard";
+import { motion } from "framer-motion";
 import "./PokemonGrid.css";
 
 interface PokemonGridProps {
@@ -35,10 +36,20 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
   return (
     <>
       <div>
-        <h3 className="text-2xl py-6 text-center font-bold">
+        <motion.h3
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl py-6 text-center font-bold"
+        >
           Search For Your Pokemon
-        </h3>
-        <div className="grid w-full max-w-sm items-center gap-1.5 mx-auto">
+        </motion.h3>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="grid w-full max-w-sm items-center gap-1.5 mx-auto"
+        >
           <Label htmlFor="pokemonName">Pokemon Name</Label>
           <Input
             type="text"
@@ -48,22 +59,57 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
             placeholder="Charizard, Pikachu, etc"
             onChange={(e) => setSearchText(e.target.value)}
           />
-        </div>
-        <h3 className="text-2xl lg:text-3xl mb-2 font-bold mt-4">
+        </motion.div>
+        <motion.h3
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="text-2xl lg:text-3xl mb-2 font-bold mt-4"
+        >
           Pokemon Collection
-        </h3>
+        </motion.h3>
       </div>
 
       {isLoading ? (
         <div className="text-center py-4 flex items-center justify-center">
-          <div className="custom-loader"></div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="custom-loader"
+          ></motion.div>
         </div>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {
+              opacity: 0,
+              y: 20,
+            },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+        >
           {filteredPokemonList.map((pokemon: any) => (
-            <PokemonCard name={pokemon.name} key={pokemon.name} />
+            <motion.div
+              key={pokemon.name}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <PokemonCard name={pokemon.name} key={pokemon.name} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </>
   );

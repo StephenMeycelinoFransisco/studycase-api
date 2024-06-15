@@ -1,7 +1,7 @@
 .custom-loader {
   width: 40px;
   height: 20px;
-  --c:radial-gradient(farthest-side,#766DF4 93%,#0000);
+  --c:radial-gradient(farthest-side,#f46d9f 93%,#0000);
   background:
     var(--c) 0    0,
     var(--c) 50%  0,
@@ -16,7 +16,7 @@
   position: absolute;
   width: 8px;
   height: 12px;
-  background:#766DF4;
+  background:#f46d9f;
   left:0;
   top:0;
   animation: 
