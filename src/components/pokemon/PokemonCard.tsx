@@ -1,9 +1,9 @@
 import React from "react";
-import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import PokeBall from "@/images/pokeball.jpeg";
 import Link from "next/link";
 import Image from "next/image";
-import PokeBall from "@/images/pokeball.jpeg";
 import { motion } from "framer-motion";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface PokemonCardProps {
   name: string;
@@ -21,6 +21,7 @@ const bgColors = [
 ];
 
 export default function PokemonCard({ name }: PokemonCardProps) {
+  // Melakukan pemilihan secara random untuk background component card
   const bgColor = bgColors[Math.floor(Math.random() * bgColors.length)];
   return (
     <Link href={`/pokemon/${name}`} key={name + "Card"}>

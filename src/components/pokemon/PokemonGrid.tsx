@@ -15,6 +15,7 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  // Membuat API Call dengan delay waktu 2 Detik
   useEffect(() => {
     const fetchData = () => {
       setTimeout(() => {
@@ -25,6 +26,7 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
     fetchData();
   }, []);
 
+  // Menggunakan Filter Data Pokemon
   const searchFilter = (pokemonList: any) => {
     return pokemonList.filter((pokemon: any) =>
       pokemon.name.toLowerCase().includes(searchText.toLowerCase())
@@ -70,6 +72,7 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
         </motion.h3>
       </div>
 
+      {/* Menghandle Loading State */}
       {isLoading ? (
         <div className="text-center py-4 flex items-center justify-center">
           <motion.div
@@ -98,6 +101,7 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
           }}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
         >
+          {/* Melakukan Mapping terhadap data pokemon */}
           {filteredPokemonList.map((pokemon: any) => (
             <motion.div
               key={pokemon.name}

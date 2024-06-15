@@ -21,6 +21,7 @@ interface NavbarMobileProps {
 }
 
 const NavbarMobile = ({ menuItems }: NavbarMobileProps) => {
+  // Mengambil pathName dari browser menggunakan usePathname
   const pathName = usePathname();
   return (
     <>
@@ -34,6 +35,7 @@ const NavbarMobile = ({ menuItems }: NavbarMobileProps) => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>PokeDexs</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          {/* Melooping menu item */}
           {menuItems.map((item, index) => (
             <DropdownMenuItem key={index}>
               <Link

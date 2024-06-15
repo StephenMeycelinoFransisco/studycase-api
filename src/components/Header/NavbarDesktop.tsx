@@ -13,6 +13,7 @@ interface NavbarDesktopProps {
 }
 
 export default function NavbarDesktop({ menuItems }: NavbarDesktopProps) {
+  // Mengambil pathName dari browser menggunakan usePathname
   const pathName = usePathname();
   return (
     <>
@@ -28,6 +29,7 @@ export default function NavbarDesktop({ menuItems }: NavbarDesktopProps) {
 
       <nav>
         <ul className="flex items-center gap-4">
+          {/* Melooping menu item */}
           {menuItems.map((item, index) => (
             <motion.li
               key={index}
@@ -47,6 +49,7 @@ export default function NavbarDesktop({ menuItems }: NavbarDesktopProps) {
               </Link>
             </motion.li>
           ))}
+          {/* Toggle Mode Button */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}

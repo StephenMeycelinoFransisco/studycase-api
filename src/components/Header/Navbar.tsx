@@ -10,6 +10,7 @@ import { menuItems } from "@/utils/menuItems";
 
 export default function Navbar() {
   const isDesktop = useMediaQuery("(min-width: 640px)", {
+    // initializeWithValue untuk memastikan value default,
     initializeWithValue: false,
   });
 

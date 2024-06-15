@@ -12,9 +12,11 @@ export default function PokemonPage({
 }: {
   params: { pokemonName: string };
 }) {
+  // Get Pokemon Data dari params
   const { pokemonName } = params;
   const [pokemonObject, setPokemonObject] = useState<any>(null);
 
+  // Fetch Pokemon Data berdasarkan ID / Nama
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,6 +29,7 @@ export default function PokemonPage({
     fetchData();
   }, [pokemonName]);
 
+  // Menghandle Loading data
   if (!pokemonObject) {
     return (
       <div className="text-center py-4 flex items-center justify-center h-screen">
