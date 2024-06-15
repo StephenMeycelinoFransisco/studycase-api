@@ -5,15 +5,19 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import PokemonCard from "./PokemonCard";
 import { motion } from "framer-motion";
+import PokemonGridPagination from "./PokemonGridPagination"; // Sesuaikan dengan lokasi file
+
 import "./PokemonGrid.css";
 
 interface PokemonGridProps {
   pokemonList: any;
 }
 
-export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
+const PokemonGrid = ({ pokemonList }: PokemonGridProps) => {
   const [searchText, setSearchText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12; // Jumlah item per halaman
 
   // Membuat API Call dengan delay waktu 2 Detik
   useEffect(() => {
@@ -34,6 +38,24 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
   };
 
   const filteredPokemonList = searchFilter(pokemonList);
+
+  // Menghitung indeks mulai dan akhir data untuk halaman saat ini
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPokemonList = filteredPokemonList.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  // Fungsi untuk mengubah halaman
+  const paginate = (pageNumber: number) => {
+    // Memastikan pageNumber tidak kurang dari 1
+    const newPage = Math.max(1, pageNumber);
+    // Memastikan pageNumber tidak lebih dari jumlah halaman yang tersedia
+    setCurrentPage(
+      Math.min(newPage, Math.ceil(filteredPokemonList.length / itemsPerPage))
+    );
+  };
 
   return (
     <>
@@ -83,38 +105,50 @@ export default function PokemonGrid({ pokemonList }: PokemonGridProps) {
           ></motion.div>
         </div>
       ) : (
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {
-              opacity: 0,
-              y: 20,
-            },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: {
-                staggerChildren: 0.1,
+        <>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: {
+                opacity: 0,
+                y: 20,
               },
-            },
-          }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
-          {/* Melakukan Mapping terhadap data pokemon */}
-          {filteredPokemonList.map((pokemon: any) => (
-            <motion.div
-              key={pokemon.name}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              <PokemonCard name={pokemon.name} key={pokemon.name} />
-            </motion.div>
-          ))}
-        </motion.div>
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
+            {/* Melakukan Mapping terhadap data pokemon */}
+            {currentPokemonList.map((pokemon: any) => (
+              <motion.div
+                key={pokemon.name}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <PokemonCard name={pokemon.name} key={pokemon.name} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Menampilkan Pagination menggunakan Shadcn UI */}
+          <PokemonGridPagination
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            totalItems={filteredPokemonList.length}
+            onPageChange={paginate}
+          />
+        </>
       )}
     </>
   );
-}
+};
+
+export default PokemonGrid;
