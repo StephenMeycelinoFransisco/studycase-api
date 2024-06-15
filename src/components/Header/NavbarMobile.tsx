@@ -28,7 +28,7 @@ const NavbarMobile = ({ menuItems }: NavbarMobileProps) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" size="icon">
-            <MenuIcon className="w-6 h-6 text-slate-700" />
+            <MenuIcon className="w-6 h-6 dark:text-white text-slate-700" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -41,7 +41,7 @@ const NavbarMobile = ({ menuItems }: NavbarMobileProps) => {
                 className={`uppercase font-bold  ${
                   pathName === item.href
                     ? "text-rose-700 hover:text-rose-500 "
-                    : "text-slate-700 hover:text-slate-500"
+                    : "text-slate-700 hover:text-slate-500 dark:text-white dark:hover:text-slate-300"
                 }`}
               >
                 {item.name}
