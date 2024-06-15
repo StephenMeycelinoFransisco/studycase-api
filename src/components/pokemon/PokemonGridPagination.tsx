@@ -69,7 +69,7 @@ const PokemonGridPagination: React.FC<PokemonGridPaginationProps> = ({
             <PaginationItem key={index}>
               {typeof page === "number" ? (
                 <PaginationLink
-                  className="xs"
+                  className="text-xs md:text-base lg:text-lg"
                   onClick={() => onPageChange(page)}
                   isActive={currentPage === page}
                 >
