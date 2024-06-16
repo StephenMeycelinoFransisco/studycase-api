@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import PokeDexs from "@/app/favicon.ico";
+import PokeDexs from "@/images/logo.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion"
 
