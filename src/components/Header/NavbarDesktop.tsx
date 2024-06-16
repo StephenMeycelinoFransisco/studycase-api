@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import PokeDexs from "@/app/favicon.ico";
+import PokeDexs from "@/images/logo.png";
 import { usePathname } from "next/navigation";
 import { MenuItem } from "@/types/type";
 import { ModeToggle } from "../toogle-button";
