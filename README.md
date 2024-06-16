@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokemon App
+This project is a Pokemon application that fetches data from the PokeAPI and displays information about different Pokemon.
 
-## Getting Started
+## Fetching Data from PokeAPI
+This project fetches Pokemon data from the PokeAPI (https://pokeapi.co/). Here's how it's implemented:
 
-First, run the development server:
+## API Utility Functions
+The utility functions getPokemonList and getPokemonListById are used to fetch Pokemon data from the PokeAPI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- getPokemonList: Fetches a list of Pokemon from the PokeAPI.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- getPokemonListById(name: string): Fetches details of a specific Pokemon by its name from the PokeAPI.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Example usage:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+import { getPokemonList, getPokemonListById } from "./lib/PokemonAPI";
 
-## Learn More
+// Fetching a list of Pokemon
+async function fetchPokemonList() {
+  try {
+    const pokemonList = await getPokemonList();
+    console.log("Pokemon List:", pokemonList);
+  } catch (error) {
+    console.error("Error fetching Pokemon list:", error);
+  }
+}
 
-To learn more about Next.js, take a look at the following resources:
+// Fetching details of a specific Pokemon
+async function fetchPokemonDetails(pokemonName) {
+  try {
+    const pokemonDetails = await getPokemonListById(pokemonName);
+    console.log("Pokemon Details:", pokemonDetails);
+  } catch (error) {
+    console.error(`Error fetching details for ${pokemonName}:`, error);
+  }
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+// Example usage
+fetchPokemonList();
+fetchPokemonDetails("pikachu");
