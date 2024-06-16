@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
+import { ModeToggle } from "../toogle-button";
 
 interface NavbarMobileProps {
   menuItems: MenuItem[];
@@ -50,6 +52,15 @@ const NavbarMobile = ({ menuItems }: NavbarMobileProps) => {
               </Link>
             </DropdownMenuItem>
           ))}
+          {/* Toggle Mode Button */}
+          <motion.div
+            className="w-full"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: menuItems.length * 0.1 }}
+          >
+            <ModeToggle />
+          </motion.div>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
