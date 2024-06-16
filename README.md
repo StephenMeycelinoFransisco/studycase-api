@@ -1,6 +1,21 @@
 # Pokemon App
 This project is a Pokemon application that fetches data from the PokeAPI and displays information about different Pokemon.
 
+## Tech Stack
+This project uses the following technologies:
+
+- **Next.js**: A React framework for building server-side rendered and static web applications.
+- **React**: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **TypeScript**: A superset of JavaScript that adds static typing.
+- **Framer Motion**: A library for animations and gestures in React applications.
+- **Lucide React**: A library of open-source icons for React.
+- **usehooks-ts**: A collection of useful React hooks.
+- **Husky**: A tool for managing Git hooks.
+- **Lint-staged**: A tool to run linters on staged Git files.
+- **ESLint**: A tool for identifying and fixing problems in JavaScript code.
+- **Sharp**: A high-performance image processing library.
+
 ## Fetching Data from PokeAPI
 This project fetches Pokemon data from the PokeAPI (https://pokeapi.co/). Here's how it's implemented:
 
@@ -21,4 +36,3 @@ Before running the application, you need to create a new file named `.env` with 
 4. Make sure to fill in any necessary values in the `.env` file as required by the application.
 
 Once you have created the `.env` file and filled in the necessary values, you can proceed with running the application.
-
