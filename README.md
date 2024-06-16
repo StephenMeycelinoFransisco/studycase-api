@@ -11,30 +11,14 @@ The utility functions getPokemonList and getPokemonListById are used to fetch Po
 
 - getPokemonListById(name: string): Fetches details of a specific Pokemon by its name from the PokeAPI.
 
-Example usage:
+## Setup Instructions
+Before running the application, you need to create a new file named `.env` with the same contents as the `.env.example` file provided. This file will store your environment variables needed for the application to run properly.
 
-import { getPokemonList, getPokemonListById } from "./lib/PokemonAPI";
+### Steps to Create .env File
+1. Locate the `.env.example` file in the root directory of the project.
+2. Create a new file in the same directory and name it `.env`.
+3. Copy all the contents from `.env.example` to the newly created `.env` file.
+4. Make sure to fill in any necessary values in the `.env` file as required by the application.
 
-// Fetching a list of Pokemon
-async function fetchPokemonList() {
-  try {
-    const pokemonList = await getPokemonList();
-    console.log("Pokemon List:", pokemonList);
-  } catch (error) {
-    console.error("Error fetching Pokemon list:", error);
-  }
-}
+Once you have created the `.env` file and filled in the necessary values, you can proceed with running the application.
 
-// Fetching details of a specific Pokemon
-async function fetchPokemonDetails(pokemonName) {
-  try {
-    const pokemonDetails = await getPokemonListById(pokemonName);
-    console.log("Pokemon Details:", pokemonDetails);
-  } catch (error) {
-    console.error(`Error fetching details for ${pokemonName}:`, error);
-  }
-}
-
-// Example usage
-fetchPokemonList();
-fetchPokemonDetails("pikachu");
