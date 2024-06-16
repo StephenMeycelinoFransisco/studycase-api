@@ -5,7 +5,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import PokemonCard from "./PokemonCard";
 import { motion } from "framer-motion";
-import PokemonGridPagination from "./PokemonGridPagination"; // Sesuaikan dengan lokasi file
+import PokemonGridPagination from "./PokemonGridPagination";
 
 import "./PokemonGrid.css";
 
